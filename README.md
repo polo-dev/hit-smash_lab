@@ -1,5 +1,5 @@
-# so-fucking-fun
-C'est trop fun 
+# Smash Lab
+Fighting game
 
 ————————————
 - Title

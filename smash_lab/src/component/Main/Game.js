@@ -12,6 +12,7 @@ export default class Game extends Component {
         };
         this.getQuestion = this.getQuestion.bind(this);
         this.sendAnswer = this.sendAnswer.bind(this);
+        this.progressBar = this.progressBar.bind(this);
         this.getQuestion('player_1');
     }
 
@@ -21,7 +22,7 @@ export default class Game extends Component {
                 'question': data.question,                 
                 'answers': data.answers,
                 'correct_answer': data.correct_answer,
-                'timer': Math.floor(Date.now()/1000) 
+                'time': Date.now() 
             });
         });
     }
@@ -36,6 +37,12 @@ export default class Game extends Component {
         this.getQuestion();
     }
 
+    progressBar(){
+        let time = Date.now();
+        let percent = (time - this.state.time)/70;
+        return percent;
+    }
+
     render() {  
         const question = this.state.question;
         const answers = this.state.answers;
@@ -43,7 +50,7 @@ export default class Game extends Component {
             <div>
                 <Question question={question} />
                 <Answers sendAnswer={this.sendAnswer} answers={answers} />
-                <Timer />
+                <Timer progressBar={this.progressBar}/>
             </div>
         )
     }
