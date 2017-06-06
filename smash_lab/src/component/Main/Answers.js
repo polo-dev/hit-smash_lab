@@ -5,6 +5,28 @@ export default class Answers extends Component {
         super(props);
         this.state = this.props.state;
         this.handleClick = this.handleClick.bind(this);
+        window.addEventListener('keydown', evt => {
+            let index = null;
+            switch(evt.keyCode){
+                case 90:
+                    index = 0;
+                    break;
+                case 81:
+                    index = 1;
+                    break;
+                case 83:
+                    index = 2;
+                    break;
+                case 68:
+                    index = 3;
+                    break;
+                default:
+                    console.log(evt.keyCode);
+                    break;
+            }
+            console.log(evt.keyCode);
+            if(index !== null)this.handleClick(index);
+        })
     }
 
 
@@ -25,7 +47,6 @@ export default class Answers extends Component {
                     <div
                         key={index} 
                         className="answer"
-                        //onKeyPress={() => {console.log(index)}}
                         onClick={() => {this.handleClick(index)}}
                     >
                         {answer}

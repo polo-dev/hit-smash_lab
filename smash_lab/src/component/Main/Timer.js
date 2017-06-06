@@ -7,6 +7,7 @@ export default class Timer extends Component {
         this.state = {
             percent: 0
         }
+        this.timeOut = null;
         this.progressBar = this.progressBar.bind(this);
         this.progressBar();        
     }
@@ -16,7 +17,8 @@ export default class Timer extends Component {
     }
 
     progressBar(){
-        setTimeout(() => {
+        if(this.timeOut)clearTimeout(this.timeOut);
+        this.timeOut = setTimeout(() => {
             this.setState({
                 percent: this.props.progressBar()
             })

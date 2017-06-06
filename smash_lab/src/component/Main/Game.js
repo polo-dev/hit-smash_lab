@@ -13,7 +13,7 @@ export default class Game extends Component {
         this.getQuestion = this.getQuestion.bind(this);
         this.sendAnswer = this.sendAnswer.bind(this);
         this.progressBar = this.progressBar.bind(this);
-        this.getQuestion('player_1');
+        this.getQuestion();
     }
 
     getQuestion(){
@@ -28,6 +28,7 @@ export default class Game extends Component {
     }
 
     sendAnswer(index){
+        console.log('index: ' + index);
         const ennemy = (this.props.player === 'player_1')?'player_2':'player_1';
         if(index === this.state.correct_answer){
             this.props.attack(ennemy);
@@ -40,7 +41,11 @@ export default class Game extends Component {
     progressBar(){
         let time = Date.now();
         let percent = (time - this.state.time)/70;
-        return percent;
+        if(percent > 100){
+            this.sendAnswer(5);
+        }else{
+            return percent;
+        }
     }
 
     render() {  
