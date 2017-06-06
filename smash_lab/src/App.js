@@ -4,11 +4,6 @@ import Header from './component/Header';
 import Main from './component/Main';
 import data from './data.json';
 import './App.css';
-import { Socket } from 'react-socket-io';
- 
-const uri = 'http://localhost:3100/';
-const options = { transports: ['websocket'] };
-
 
 class App extends Component {
   constructor(props) {
@@ -72,9 +67,9 @@ class App extends Component {
         />;
     }
     return (
-      <Socket uri={uri} options={options}> 
+      <div> 
           { template }
-      </Socket>
+      </div>
     );
   }
 }
