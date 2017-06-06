@@ -55,10 +55,7 @@ class App extends Component {
       template = 
         <div>
           <Header state={this.state} />
-          <main>
-            <Main player='player_1' attack={this.attack} getQuestion={this.getQuestion}/>
-            <Main player='player_2' attack={this.attack} getQuestion={this.getQuestion}/>
-          </main>
+          <Main attack={this.attack} getQuestion={this.getQuestion}/>
         </div>;
     } else {
       let player = (this.state.player_1 !== undefined)?'player_2':'player_1';

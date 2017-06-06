@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Question extends Component {
     render() {
         return (
-            <h2>Combien font 6+7 ?</h2> 
+            <h2 className="question">{this.props.question}</h2>
         )
     }
 }
