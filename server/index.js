@@ -11,6 +11,14 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
+  //socket.join('room1');
+  //io.to('room1').emit(console.log('test'));
+
+  var nsp = io.of('/my-namespace');
+  nsp.on('connection', function(socket){
+    console.log('someone connected');
+  });
+  nsp.emit('hi', 'everyone!');
 });
 
 
