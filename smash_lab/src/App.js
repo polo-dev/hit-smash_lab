@@ -19,7 +19,7 @@ class App extends Component {
     if(player === 'player_2')this.setState({'player_2': {hero_id: hero_id, life: this.state.heroes[hero_id].max_life}});
   }
   
-  getQuestion(player){
+  getQuestion(){
     //let link = 'https://opentdb.com/api.php?amount=1&type=multiple';
     let link = 'http://localhost:3100/'
     return fetch(link)
@@ -55,7 +55,10 @@ class App extends Component {
       template = 
         <div>
           <Header state={this.state} />
-          <Main attack={this.attack} state={this.state} getQuestion={this.getQuestion}/>
+          <main>
+            <Main attack={this.attack} getQuestion={this.getQuestion}/>
+            <Main attack={this.attack} getQuestion={this.getQuestion}/>
+          </main>
         </div>;
     } else {
       let player = (this.state.player_1 !== undefined)?'player_2':'player_1';
