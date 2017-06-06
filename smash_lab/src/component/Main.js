@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Question from './Main/Question'
 import Answers from './Main/Answers';
 import './Main/Main.css';
 
@@ -39,7 +40,7 @@ export default class Main extends Component {
         const answers = this.state.answers;
         return (
             <div>
-                <h2 className="question">{question}</h2>
+                <Question question={question} />
                 <Answers sendAnswer={this.sendAnswer} answers={answers} />
             </div>
         )
