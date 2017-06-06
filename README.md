@@ -1,5 +1,5 @@
 # Smash Lab
-C'est trop fun 
+Fighting game
 
 ————————————
 
