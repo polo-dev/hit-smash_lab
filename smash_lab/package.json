@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "express": "^4.15.2",
     "rc-progress": "^2.1.2",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "socket.io": "^2.0.2",
+    "socket.io-client": "^1.7.4",
+    "socket.io-react": "^1.1.2"
   },
   "devDependencies": {
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.7",
+    "react-socket-io": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
