@@ -1,0 +1,69 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+header {
+    display: flex;
+}
+
+header > div{
+    flex-grow: 1;
+    display: flex;    
+}
+
+.status-bar {
+    flex: auto;
+    padding: 10px;
+}
+.status-bar > * {
+    border: 1px solid black;
+    margin: 5px;
+}
+.status-bar * {
+    height: 15px;
+}
+.life {
+    width: 100%;
+    
+}
+.life > div {
+    width: 90%;
+    background: green;
+}
+.rage {
+    width: 50%;
+}
+.rage > div {
+    width: 30%;
+    background: red;
+}
+
+.icon-player img {
+  width: 80px;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+}

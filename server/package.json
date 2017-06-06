@@ -1,0 +1,36 @@
+{
+  "name": "hit",
+  "version": "1.0.0",
+  "description": "hit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polo-dev/so-fucking-fun.git"
+  },
+  "keywords": [
+    "hit"
+  ],
+  "author": "polo-dev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polo-dev/so-fucking-fun/issues"
+  },
+  "homepage": "https://github.com/polo-dev/so-fucking-fun#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "errorhandler": "^1.5.0",
+    "express": "^4.15.3",
+    "fetch-api": "0.0.2",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.9.6",
+    "mongoose-error": "^1.0.1",
+    "mongoose-mongodb-errors": "0.0.2",
+    "node-fetch": "^1.7.0",
+    "nodemon": "^1.11.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

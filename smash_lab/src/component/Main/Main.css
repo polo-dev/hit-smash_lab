@@ -1,0 +1,24 @@
+main > div {
+    flex: auto;
+}
+.question {
+    max-width: 300px;
+    margin: auto; 
+}
+.answers {
+    max-width: 300px;
+    margin: auto;
+    margin-top: 25px;
+}
+.answer {
+    height: 100px;
+    width: 98px;
+    background: grey;
+    border: 1px solid black;
+    text-align: center;
+    display: inline-block;
+}
+.answer:first-child {
+    display: block;
+    margin: auto;
+}
