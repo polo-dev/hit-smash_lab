@@ -8,8 +8,8 @@ export default class Header extends Component {
         super(props);
         this.state = this.props.state;
     }
-    componentWillUpdate(nextProps, nextState){
-       this.state = nextProps;
+    componentWillReceiveProps(nextProps){
+       this.setState(nextProps.state);
     }
 
     render() {
@@ -33,7 +33,7 @@ export default class Header extends Component {
                         state={this.state}
                     />   
                      <Status 
-                        player='player_1'
+                        player='player_2'
                         state={this.state}
                     />                   
                     <Smash />

@@ -15,15 +15,12 @@ export default class Main extends Component {
     }
 
     getQuestion(player){
-        this.props.getQuestion(player).then((data) => {
-            const answers = data.answers;
-            const question = data.question;
-            const correct_answer = data.correct_answer;            
+        this.props.getQuestion(player).then((data) => {         
             this.setState({
                 player_1: {
-                    'question': question,                 
-                    'answers': answers,
-                    'correct_answer': correct_answer
+                    'question': data.question,                 
+                    'answers': data.answers,
+                    'correct_answer': data.correct_answer
                 } 
             });
         });

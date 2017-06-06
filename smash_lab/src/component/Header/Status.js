@@ -6,6 +6,10 @@ export default class Status extends Component {
         this.state = this.props.state;
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState(nextProps.state);
+    }
+
     render() {
         const player = this.props.player
         const hero_id = this.state[player].hero_id

@@ -57,17 +57,11 @@ class App extends Component {
           <Header state={this.state} />
           <Main attack={this.attack} state={this.state} getQuestion={this.getQuestion}/>
         </div>;
-    } else if (this.state.player_1 !== undefined){
-      template = 
-        <Home 
-          player='player_2'
-          heroes={this.state.heroes}
-          onSelectHero={this.heroSelected}
-        />;
     } else {
+      let player = (this.state.player_1 !== undefined)?'player_2':'player_1';
       template = 
         <Home 
-          player='player_1'
+          player={player}
           heroes={this.state.heroes}
           onSelectHero={this.heroSelected}
         />;
