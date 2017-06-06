@@ -25,12 +25,11 @@ export default class Main extends Component {
     }
 
     sendAnswer(index){
+        const ennemy = (this.props.player === 'player_1')?'player_2':'player_1';
         if(index === this.state.correct_answer){
-            console.log('bravo');
-            this.props.attack('player_2');
+            this.props.attack(ennemy);
         }else{
-            console.log('perdu');
-            this.props.attack('player_1');
+            this.props.attack(this.props.player);
         }
         this.getQuestion();
     }

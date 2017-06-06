@@ -56,8 +56,8 @@ class App extends Component {
         <div>
           <Header state={this.state} />
           <main>
-            <Main attack={this.attack} getQuestion={this.getQuestion}/>
-            <Main attack={this.attack} getQuestion={this.getQuestion}/>
+            <Main player='player_1' attack={this.attack} getQuestion={this.getQuestion}/>
+            <Main player='player_2' attack={this.attack} getQuestion={this.getQuestion}/>
           </main>
         </div>;
     } else {
