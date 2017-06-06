@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 const getQuestion = require('./question/QuestionController.js');
-const Api = require('./server.js');
+const Api = require('./api.js');
 require('dotenv').config()
 
 app.get(['/','/question','/question/:category'], getQuestion);
