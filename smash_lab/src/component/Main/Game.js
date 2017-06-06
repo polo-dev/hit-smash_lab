@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Question from './Question'
 import Answers from './Answers';
+import Timer from './Timer';
 
-export default class Main extends Component {
+export default class Game extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -19,7 +20,8 @@ export default class Main extends Component {
             this.setState({
                 'question': data.question,                 
                 'answers': data.answers,
-                'correct_answer': data.correct_answer 
+                'correct_answer': data.correct_answer,
+                'timer': Math.floor(Date.now()/1000) 
             });
         });
     }
@@ -41,6 +43,7 @@ export default class Main extends Component {
             <div>
                 <Question question={question} />
                 <Answers sendAnswer={this.sendAnswer} answers={answers} />
+                <Timer />
             </div>
         )
     }
