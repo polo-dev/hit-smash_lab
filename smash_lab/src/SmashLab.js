@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import SocketIOClient from 'socket.io-client';
 import Home from './component/Home';
 import Header from './component/Header';
-import Game from './Game';
+import Game from './component/Game';
 import data from './data.json';
-import './App.css';
+import './SmashLab.css';
 
 //const server_link = 'http://localhost:3100'
 //const server_link = 'http://127.0.0.1:3100'
 const server_link = 'http://192.168.0.22:3100'
 //const server_link = 'https://opentdb.com/api.php?amount=1&type=multiple';
 
-class App extends Component {
+class SmashLab extends Component {
   constructor(props) {
     super(props);
 
@@ -131,7 +131,7 @@ class App extends Component {
       template = 
         <div>
           <Header state={this.state} />
-          <Game player='player' attack={this.attack} getQuestion={this.getQuestion}/>
+          <Game attack={this.attack} getQuestion={this.getQuestion}/>
         </div>;
     } else if (this.state.player !== undefined){
       template = "En attente de l'autre joueur";
@@ -152,4 +152,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default SmashLab;
