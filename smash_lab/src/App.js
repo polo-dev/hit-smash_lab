@@ -31,11 +31,19 @@ class App extends Component {
       this.socket.emit('start');
     });
 
+    this.socket.on('start', (enemy_id) => {
+      this.setState({
+        enemy_id: enemy_id
+      });
+      console.log('1er enemy id : ' + enemy_id); 
+      this.socket.emit('match');
+    });
+
     this.socket.on('match', (enemy_id) => {
       this.setState({
         enemy_id: enemy_id
       });
-      console.log('enemy id : ' + enemy_id);
+      console.log('2e enemy id : ' + enemy_id); 
     });
 
     this.socket.on('enemySelection', (enemy_hero_id) => {

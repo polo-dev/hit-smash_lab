@@ -39,9 +39,12 @@ io.on('connection', (socket) => {
   socket.emit('lab', socket.id);
 
   socket.on('start', () => {
-    
-    socket.to('smash_lab').broadcast.emit('match', socket.id);
+    socket.to('smash_lab').broadcast.emit('start', socket.id);
   });
+
+  socket.on('match', () => {
+    socket.to('smash_lab').broadcast.emit('match', socket.id);
+  })
 
   socket.on('heroSelected', (hero_id) => {
     socket.to('smash_lab').broadcast.emit('enemySelection', hero_id);
