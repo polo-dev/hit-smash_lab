@@ -9,7 +9,7 @@ export default class Timer extends Component {
         }
         this.timeOut = null;
         this.progressBar = this.progressBar.bind(this);
-        this.progressBar();        
+        this.progressBar();
     }
 
     componentDidUpdate(){
@@ -17,12 +17,22 @@ export default class Timer extends Component {
     }
 
     progressBar(){
+    /**/  
         if(this.timeOut)clearTimeout(this.timeOut);
         this.timeOut = setTimeout(() => {
             this.setState({
                 percent: this.props.progressBar()
             })
-        },1000);
+        },500);
+    /** /
+        if(this.interval)clearInterval(this.interval);
+        this.interval = setInterval(() => {
+            this.setState({
+                percent: this.props.progressBar()
+            })
+            console.log('coucou interval settate');
+        },10);
+    /**/
     }
 
     render() {
