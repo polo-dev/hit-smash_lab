@@ -18,22 +18,22 @@ export default class Header extends Component {
                 <div>
                     <Smash />
                     <Status 
-                        player='player_1'
+                        player='player'
                         state={this.state}
                     />
                     <Player
-                        player='player_1'
+                        player='player'
                         state={this.state}
                     />    
                 </div>
                 <p>VERSUS</p>
                 <div>
                     <Player 
-                        player='player_2'
+                        player='enemy'
                         state={this.state}
                     />   
                      <Status 
-                        player='player_2'
+                        player='enemy'
                         state={this.state}
                     />                   
                     <Smash />

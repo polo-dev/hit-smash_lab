@@ -1,0 +1,64 @@
+{
+  "heroes": [
+    {
+      "id":0,
+      "name": "Luke Skywalker",
+      "universe": "Star Wars",
+      "max_life": 180
+    },
+    {
+      "id":1,
+      "name": "Dark Vador",
+      "universe": "Star Wars",
+      "max_life": 200
+    },
+    {
+      "id":2,
+      "name": "Boba Fett",
+      "universe": "Star Wars",
+      "max_life": 150
+    },
+    {
+      "id":3,
+      "name": "Jon Snow",
+      "universe": "Game of Throne",
+      "max_life": 40
+    },
+    {
+      "id":4,
+      "name": "Joffrey Baratheon",
+      "universe": "Game of Throne",
+      "max_life": 120
+    },
+    {
+      "id":5,
+      "name": "Tyrion Lannister",
+      "universe": "Game of Throne",
+      "max_life": 130
+    },
+    {
+      "id":6,
+      "name": "Iron Man",
+      "universe": "Marvel",
+      "max_life": 100
+    },
+    {
+      "id":7,
+      "name": "Captain America",
+      "universe": "Marvel",
+      "max_life": 120
+    },
+    {
+      "id":8,
+      "name": "Ghost Rider",
+      "universe": "Marvel",
+      "max_life": 90
+    }
+  ],
+  "smash": [
+      {}
+  ],
+  "rage_blast":[
+      {}
+  ]
+}

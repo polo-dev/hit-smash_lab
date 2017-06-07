@@ -7,8 +7,8 @@ export default class Home extends Component {
         this.onSelectHero = this.onSelectHero.bind(this);
     }
 
-    onSelectHero(hero_id, player){
-        this.props.onSelectHero(hero_id, player);
+    onSelectHero(hero_id){
+        this.props.onSelectHero(hero_id);
     }
 
     render() {
@@ -21,7 +21,7 @@ export default class Home extends Component {
                     <img key={hero.id}
                         src={process.env.PUBLIC_URL + '/img/hero/' + hero.id + '.png'}
                         alt={hero.name} 
-                        onClick={() => {this.onSelectHero(hero.id,player)}}
+                        onClick={() => {this.onSelectHero(hero.id)}}
                     />
                 )) }
             </div>
