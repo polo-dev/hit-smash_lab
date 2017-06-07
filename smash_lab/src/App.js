@@ -59,11 +59,20 @@ class App extends Component {
       console.log(message);
     });
 
+    this.socket.on('friendDisconnect', () => {
+      console.log('adversaire déconnecté');
+      this.socket.emit('disconnect');
+    });
   }
 
-
   heroSelected(hero_id){
-    this.setState({player: {hero_id: hero_id, life: this.state.heroes[hero_id].max_life}});
+    this.setState({
+      player: {
+        hero_id: hero_id, 
+        life: this.state.heroes[hero_id].max_life, 
+        rage: this.state.heroes[hero_id].max_rage
+      }
+    });
     this.socket.emit('heroSelected', hero_id);
   }
   
@@ -108,10 +117,7 @@ class App extends Component {
           <Main attack={this.attack} getQuestion={this.getQuestion}/>
         </div>;
     } else if (this.state.player !== undefined){
-      template = 
-        <div>
-          En attente de l'autre joueur
-        </div>
+      template = "En attente de l'autre joueur";
     } else if (this.state.player_id !== undefined && this.state.enemy_id !== undefined) {
       template =
         <Home 
@@ -119,10 +125,7 @@ class App extends Component {
           onSelectHero={this.heroSelected}
         />;
     } else {
-      template = 
-        <div>
-          Salut, tu n'as pas matché dsl
-        </div>
+      template = "Salut, tu n'as pas matché dsl. Reload";
     }
     return (
       <div> 
