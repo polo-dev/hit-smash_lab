@@ -9,7 +9,7 @@ export default class Timer extends Component {
         }
         this.timeOut = null;
         this.progressBar = this.progressBar.bind(this);
-        this.progressBar();        
+        this.progressBar();
     }
 
     componentDidUpdate(){
