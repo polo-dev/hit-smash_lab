@@ -23,16 +23,7 @@ export default class Timer extends Component {
             this.setState({
                 percent: this.props.progressBar()
             })
-        },500);
-    /** /
-        if(this.interval)clearInterval(this.interval);
-        this.interval = setInterval(() => {
-            this.setState({
-                percent: this.props.progressBar()
-            })
-            console.log('coucou interval settate');
         },10);
-    /**/
     }
 
     render() {

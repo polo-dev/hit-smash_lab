@@ -38,7 +38,10 @@ export default class Game extends Component {
         let time = Date.now();
         let percent = (time - this.state.time)/50;
         if(percent > 100){
-            this.sendAnswer(5);
+            if(percent < 100.2){
+                this.sendAnswer(5);
+            }
+            return 0;
         }else{
             return percent;
         }
