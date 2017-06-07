@@ -12,11 +12,10 @@ export default class Home extends Component {
     }
 
     render() {
-        const player = this.props.player
         const heroes = this.props.heroes;
         return (
             <div>
-                <h3>{player}, Choississez votre personnage :</h3>
+                <h3>Choisissez votre personnage :</h3>
                 { heroes.map( hero => (
                     <img key={hero.id}
                         src={process.env.PUBLIC_URL + '/img/hero/' + hero.id + '.png'}

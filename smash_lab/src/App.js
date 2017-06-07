@@ -20,6 +20,7 @@ class App extends Component {
     this.heroSelected = this.heroSelected.bind(this);
     this.getQuestion = this.getQuestion.bind(this);
     this.attack = this.attack.bind(this);
+    this.life = this.life.bind(this);
 
     this.socket = SocketIOClient(server_link);
 
@@ -48,11 +49,15 @@ class App extends Component {
 
     this.socket.on('enemySelection', (enemy_hero_id) => {
       this.setState({enemy: {hero_id: enemy_hero_id, life: this.state.heroes[enemy_hero_id].max_life}});
-    })
+    });
+
+    this.socket.on('attack', (player) => {
+      this.life(!player);
+    });
 
     this.socket.on('message', (message) => {
       console.log(message);
-    })
+    });
 
   }
 
@@ -71,23 +76,27 @@ class App extends Component {
     })
   }
 
-  attack(player){
-    if(player === 'player'){
-      this.setState({
-        player: {
-          hero_id: this.state.player_1.hero_id,
-          life: this.state.player_1.life - 5
-        }
-      }); 
-    }
-    if(player === 'enemy'){
+  life(enemy){
+    if(enemy){
       this.setState({
         enemy: {
-          hero_id: this.state.player_2.hero_id,
-          life: this.state.player_2.life - 5
+          hero_id: this.state.enemy.hero_id,
+          life: this.state.enemy.life - 5
+        }
+      }); 
+    } else {
+      this.setState({
+        player: {
+          hero_id: this.state.player.hero_id,
+          life: this.state.player.life - 5
         }
       }); 
     }
+  }
+
+  attack(enemy){
+    this.life(enemy);
+    this.socket.emit('attack', enemy);
   }
 
   render() {
@@ -106,10 +115,14 @@ class App extends Component {
     } else if (this.state.player_id !== undefined && this.state.enemy_id !== undefined) {
       template =
         <Home 
-          player={this.state.player_id}
           heroes={this.state.heroes}
           onSelectHero={this.heroSelected}
         />;
+    } else {
+      template = 
+        <div>
+          Salut, tu n'as pas matché dsl
+        </div>
     }
     return (
       <div> 

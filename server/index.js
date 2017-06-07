@@ -50,6 +50,10 @@ io.on('connection', (socket) => {
     socket.to('smash_lab').broadcast.emit('enemySelection', hero_id);
   });
 
+  socket.on('attack', (enemy) => {
+     socket.to('smash_lab').broadcast.emit('attack', enemy);
+  })
+
   socket.on('disconnect', () => {
     rooms.smash_lab.splice(rooms.smash_lab.indexOf(socket.id), 1);
     // console.log(rooms);

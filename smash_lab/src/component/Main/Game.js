@@ -29,12 +29,7 @@ export default class Game extends Component {
 
     sendAnswer(index){
         console.log('index: ' + index);
-        const ennemy = (this.props.player === 'player_1')?'player_2':'player_1';
-        if(index === this.state.correct_answer){
-            this.props.attack(ennemy);
-        }else{
-            this.props.attack(this.props.player);
-        }
+        this.props.attack(index === this.state.correct_answer);
         this.getQuestion();
     }
 
