@@ -17,7 +17,6 @@ export default class Timer extends Component {
     }
 
     progressBar(){
-    /**/  
         if(this.timeOut)clearTimeout(this.timeOut);
         this.timeOut = setTimeout(() => {
             this.setState({
@@ -27,7 +26,7 @@ export default class Timer extends Component {
     }
 
     render() {
-        const percent = this.state.percent;
+        const percent = 100 - this.state.percent;
         return (
             <Line percent={percent}/>
         )

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Question from './Question'
-import Answers from './Answers';
-import Timer from './Timer';
+import Question from './Game/Question'
+import Answers from './Game/Answers';
+import Timer from './Game/Timer';
+import './Main/Game.css';
 
 export default class Game extends Component {
     constructor(props){

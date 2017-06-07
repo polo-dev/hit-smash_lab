@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SocketIOClient from 'socket.io-client';
 import Home from './component/Home';
 import Header from './component/Header';
-import Main from './component/Main';
+import Game from './Game';
 import data from './data.json';
 import './App.css';
 
@@ -19,6 +19,7 @@ class App extends Component {
 
     this.heroSelected = this.heroSelected.bind(this);
     this.getQuestion = this.getQuestion.bind(this);
+    this.getSmash = this.getSmash.bind(this);
     this.attack = this.attack.bind(this);
     this.life = this.life.bind(this);
 
@@ -77,12 +78,28 @@ class App extends Component {
   }
   
   getQuestion(){
+    this.getSmash();
     return fetch(server_link)
     .then((response) => {
       return response.json();
     }).catch((error) => {
       console.log(error);
     })
+  }
+
+  getSmash(){
+    if(!this.state.count){
+      this.setState({
+        count: Math.floor(Math.random * 6)
+      });
+      if(this.state.smash){
+
+      }
+    }else{
+      this.setState({
+        count: this.state.count - 1
+      });
+    }
   }
 
   life(enemy){
@@ -114,7 +131,7 @@ class App extends Component {
       template = 
         <div>
           <Header state={this.state} />
-          <Main attack={this.attack} getQuestion={this.getQuestion}/>
+          <Game player='player' attack={this.attack} getQuestion={this.getQuestion}/>
         </div>;
     } else if (this.state.player !== undefined){
       template = "En attente de l'autre joueur";
