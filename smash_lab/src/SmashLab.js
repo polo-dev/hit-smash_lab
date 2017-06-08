@@ -87,7 +87,7 @@ class SmashLab extends Component {
   }
   
   getQuestion(){
-    this.getSmash();
+    //this.getSmash();
     return fetch(server_link)
     .then((response) => {
       return response.json();

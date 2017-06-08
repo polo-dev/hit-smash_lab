@@ -16,27 +16,27 @@ export default class Header extends Component {
         return (
             <header>
                 <div>
-                    <Smash />
+                    <Player 
+                        player='player'
+                        state={this.state}
+                    />   
                     <Status 
                         player='player'
                         state={this.state}
-                    />
-                    <Player
-                        player='player'
-                        state={this.state}
-                    />    
+                    />                  
+                    <Smash />
                 </div>
                 <p>VERSUS</p>
                 <div>
-                    <Player 
+                   <Smash />
+                    <Status 
                         player='enemy'
                         state={this.state}
-                    />   
-                     <Status 
+                    />
+                    <Player
                         player='enemy'
                         state={this.state}
-                    />                   
-                    <Smash />
+                    />    
                 </div>
             </header>
         )

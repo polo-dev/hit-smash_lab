@@ -8,7 +8,6 @@ export default class Player extends Component {
 
     render() {
         const player = this.props.player;
-        const name = this.state[player + '_id'];
         const hero_id = this.state[player].hero_id;
         return (
             <div className="icon-player">
@@ -16,7 +15,7 @@ export default class Player extends Component {
                     src={process.env.PUBLIC_URL + '/img/hero/' + hero_id + '.png'}
                     alt={this.state.heroes[hero_id].name}
                 />
-                <p>{name}</p>
+                <p>{player}</p>
             </div>
         )
     }
