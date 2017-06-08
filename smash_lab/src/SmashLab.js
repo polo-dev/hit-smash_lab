@@ -15,7 +15,11 @@ class SmashLab extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {heroes: data.heroes};
+    this.state = {
+      heroes: data.heroes,
+      count: null,
+      smash: null
+    };
 
     this.heroSelected = this.heroSelected.bind(this);
     this.getQuestion = this.getQuestion.bind(this);
@@ -23,6 +27,11 @@ class SmashLab extends Component {
     this.attack = this.attack.bind(this);
     this.life = this.life.bind(this);
 
+    this.init = this.init.bind(this);
+    this.init();    
+  }
+
+  init(){
     this.socket = SocketIOClient(server_link);
 
     this.socket.on('lab', (player_id) => {
@@ -71,7 +80,7 @@ class SmashLab extends Component {
       player: {
         hero_id: hero_id, 
         life: this.state.heroes[hero_id].max_life, 
-        rage: this.state.heroes[hero_id].max_rage
+        rage: 0
       }
     });
     this.socket.emit('heroSelected', hero_id);
@@ -92,8 +101,10 @@ class SmashLab extends Component {
       this.setState({
         count: Math.floor(Math.random * 6)
       });
-      if(this.state.smash){
-
+      if(!this.state.smash){
+        this.setState({
+          smash: 0
+        })
       }
     }else{
       this.setState({
