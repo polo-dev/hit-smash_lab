@@ -6,9 +6,9 @@ import Main from './component/Main';
 import data from './data.json';
 import './App.css';
 
-//const server_link = 'http://localhost:3100'
+const server_link = 'http://localhost:3100'
 //const server_link = 'http://127.0.0.1:3100'
-const server_link = 'http://192.168.0.22:3100'
+//const server_link = 'http://192.168.0.22:3100'
 //const server_link = 'https://opentdb.com/api.php?amount=1&type=multiple';
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
       this.setState({
         enemy_id: enemy_id
       });
-      console.log('1er enemy id : ' + enemy_id); 
+      console.log('1er enemy id : ' + enemy_id);
       this.socket.emit('match');
     });
 
@@ -43,7 +43,7 @@ class App extends Component {
       this.setState({
         enemy_id: enemy_id
       });
-      console.log('2e enemy id : ' + enemy_id); 
+      console.log('2e enemy id : ' + enemy_id);
     });
 
     this.socket.on('enemySelection', (enemy_hero_id) => {
@@ -61,7 +61,7 @@ class App extends Component {
     this.setState({player: {hero_id: hero_id, life: this.state.heroes[hero_id].max_life}});
     this.socket.emit('heroSelected', hero_id);
   }
-  
+
   getQuestion(){
     return fetch(server_link)
     .then((response) => {
@@ -72,47 +72,48 @@ class App extends Component {
   }
 
   attack(player){
-    if(player === 'player'){
+    console.log(this.state);
+    if(player === 'player_1'){
       this.setState({
         player: {
-          hero_id: this.state.player_1.hero_id,
-          life: this.state.player_1.life - 5
+          hero_id: this.state.player.hero_id,
+          life: this.state.player.life - 5
         }
-      }); 
+      });
     }
-    if(player === 'enemy'){
+    if(player === 'player_2'){
       this.setState({
         enemy: {
-          hero_id: this.state.player_2.hero_id,
-          life: this.state.player_2.life - 5
+          hero_id: this.state.enemy.hero_id,
+          life: this.state.enemy.life - 5
         }
-      }); 
+      });
     }
   }
 
   render() {
     let template = null;
     if (this.state.player !== undefined && this.state.enemy !== undefined){
-      template = 
+      template =
         <div>
           <Header state={this.state} />
           <Main attack={this.attack} getQuestion={this.getQuestion}/>
         </div>;
-    } else if (this.state.player !== undefined){
-      template = 
-        <div>
-          En attente de l'autre joueur
-        </div>
     } else if (this.state.player_id !== undefined && this.state.enemy_id !== undefined) {
       template =
-        <Home 
+        <Home
           player={this.state.player_id}
           heroes={this.state.heroes}
           onSelectHero={this.heroSelected}
         />;
+    } else {
+      template =
+        <div>
+          En attente de l autre joueur
+        </div>
     }
     return (
-      <div> 
+      <div>
           { template }
       </div>
     );

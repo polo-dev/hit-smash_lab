@@ -28,39 +28,108 @@ app.get('/', function (req, res) {
 
 app.get(['/','/question','/question/:category'], getQuestion);
 
-const rooms = {
-  smash_lab: []
-}
-io.on('connection', (socket) => {
-  if(rooms.smash_lab.length > 1)socket.disconnect(true);
+// const rooms = {
+//   smash_lab: []
+// }
+var rooms = [['room_1', []]];
 
-  rooms.smash_lab.push(socket.id);
-  socket.join('smash_lab');
+io.on('connection', (socket) => {
+  // choose or create a new room for the new user
+  giveRoomUser(socket);
+
   socket.emit('lab', socket.id);
 
+  // get the user room
+  var userRoom = getRoomUser(socket);
+
   socket.on('start', () => {
-    socket.to('smash_lab').broadcast.emit('start', socket.id);
+    socket.to(userRoom).broadcast.emit('start', socket.id);
   });
 
   socket.on('match', () => {
-    socket.to('smash_lab').broadcast.emit('match', socket.id);
+    socket.to(userRoom).broadcast.emit('match', socket.id);
   })
 
   socket.on('heroSelected', (hero_id) => {
-    socket.to('smash_lab').broadcast.emit('enemySelection', hero_id);
+    socket.to(userRoom).broadcast.emit('enemySelection', hero_id);
   });
 
   socket.on('disconnect', () => {
-    rooms.smash_lab.splice(rooms.smash_lab.indexOf(socket.id), 1);
-    // console.log(rooms);
-    // do some stuff
-    console.log('disconnect');
+    console.log('user disconnected ' + socket.id);
+    clearRooms(socket);
   });
 });
 
+function getRoomUser(socket) {
+  for(var i = 0; i < rooms.length; i++)
+  {
+    // room[0] -> name of room, room[1] -> list users
+    var room = rooms[i];
+    if(room[1].includes(socket.id))
+    {
+      //return then name of the room;
+      return room[0];
+    }
+  }
+}
 
 app.use('/api', Api);
 
+function giveRoomUser(socket) {
+  // we check if their is no room available
+  var available = false;
+  if(rooms.length < 1)
+  {
+    rooms.push(['room_1', [socket.id]]);
+    socket.join(new_room);
+  }
+  else
+  {
+    for(var i = 0; i < rooms.length; i++)
+    {
+      // room[0] -> name of room, room[1] -> list users
+      var room = rooms[i];
+      if(room[1].length < 2 && !available)
+      {
+        room[1].push(socket.id);
+        socket.join(room[0]);
+        available = true;
+      }
+    }
+    //if no rooms are available
+    if(!available)
+    {
+      var lastRoom = rooms[rooms.length - 1];
+      // name of the new room
+      var newNumber =  parseInt(lastRoom[0].split("_")[1]) + 1;
+      var new_room = 'room_' + newNumber;
+      rooms.push([new_room, [socket.id]]);
+      socket.join(new_room);
+    }
+  }
+}
 
+function clearRooms (socket) {
 
-
+  for(var i = 0; i < rooms.length; i++)
+  {
+    // room[0] -> name of room, room[1] -> list users
+    var room = rooms[i];
+    if(room[1].includes(socket.id))
+    {
+      if(room[1].length > 1)
+      {
+        var user = room[1].indexOf(socket.id);
+        console.log('user delete of : ' + rooms[i][0]);
+        room[1].splice(user, 1);
+      }
+      else
+      {
+        console.log('rooms delete : ' + rooms[i][0]);
+        rooms.splice(i, 1);
+      }
+      //return then name of the room;
+      console.log(rooms);
+    }
+  }
+}
