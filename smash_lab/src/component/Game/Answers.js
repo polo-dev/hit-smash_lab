@@ -29,12 +29,6 @@ export default class Answers extends Component {
         })
     }
 
-
-    handleKeyPress(evt){
-        alert('prout');
-        console.log(evt.charCode);
-    }
-
     handleClick(index){
        this.props.sendAnswer(index);
     }

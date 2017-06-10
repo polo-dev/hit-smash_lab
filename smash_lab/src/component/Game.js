@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Question from './Question'
-import Answers from './Answers';
-import Timer from './Timer';
+import Question from './Game/Question'
+import Answers from './Game/Answers';
+import Timer from './Game/Timer';
+import './Game/Game.css';
 
 export default class Game extends Component {
     constructor(props){
@@ -25,24 +26,23 @@ export default class Game extends Component {
                 'time': Date.now() 
             });
         });
+        console.log('question');
     }
 
     sendAnswer(index){
         console.log('index: ' + index);
-        const ennemy = (this.props.player === 'player_1')?'player_2':'player_1';
-        if(index === this.state.correct_answer){
-            this.props.attack(ennemy);
-        }else{
-            this.props.attack(this.props.player);
-        }
+        this.props.attack(index === this.state.correct_answer);
         this.getQuestion();
     }
 
     progressBar(){
         let time = Date.now();
-        let percent = (time - this.state.time)/70;
+        let percent = (time - this.state.time)/50;
         if(percent > 100){
-            this.sendAnswer(5);
+            if(percent < 100.2){
+                this.sendAnswer(5);
+            }
+            return 0;
         }else{
             return percent;
         }

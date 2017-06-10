@@ -22,11 +22,11 @@ export default class Timer extends Component {
             this.setState({
                 percent: this.props.progressBar()
             })
-        },1000);
+        },10);
     }
 
     render() {
-        const percent = this.state.percent;
+        const percent = 100 - this.state.percent;
         return (
             <Line percent={percent}/>
         )

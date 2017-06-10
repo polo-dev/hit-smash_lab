@@ -6,17 +6,20 @@ main > div {
     margin: auto; 
 }
 .answers {
-    max-width: 300px;
-    margin: auto;
-    margin-top: 25px;
+    text-align: center;
+    margin-top: 100px;
 }
 .answer {
-    height: 100px;
-    width: 98px;
+    height: 150px;
+    width: 150px;
     background: grey;
     border: 1px solid black;
     text-align: center;
     display: inline-block;
+    border-radius: 15px;
+    margin: 0;
+    background: radial-gradient(#ffffff, #cccccc);
+    font-size: 25px;
 }
 .answer:first-child {
     display: block;

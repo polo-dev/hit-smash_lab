@@ -54,6 +54,10 @@ io.on('connection', (socket) => {
     socket.to(userRoom).broadcast.emit('enemySelection', hero_id);
   });
 
+  socket.on('attack', (enemy) => {
+    socket.to(userRoom).broadcast.emit('attack', enemy);
+  });
+
   socket.on('disconnect', () => {
     console.log('user disconnected ' + socket.id);
     clearRooms(socket);
